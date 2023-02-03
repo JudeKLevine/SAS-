@@ -1,9 +1,4 @@
-*/ Cours de SAS;
-
-/* creation de la bibliotheque ma_bibli*/
-
-/* Creation d'une table;
-libname ma_bibli "/home/u63122230/ma_bibli";
+libname ma_bibli "/home/u63122190/SAS BASE";
 data ma_bibli.donnees;
 length prenom $16 profession $16;
 input prenom $ profession $ age montant_pret;
@@ -18,66 +13,57 @@ YOHAN ACTUARE 23 1000000
 ;
 run; 
 
-
 * Etape DATA KEEP;
+
 data E_1 ;
 set ma_bibli.donnees;
 keep prenom montant_pret;
 run;
 
 *Etape DATA DROP;
+
 data E_2;
 set ma_bibli.donnees;
 drop age;
 run;
 
-*Etaoe DATA RENAME 3;
+*Etape DATA RENAME 3;
+
 data E_3; 
 set ma_bibli.donnees; 
 rename profession = emploi;
 run;
-
 * Etape DATA WHERE;
-
 data E_4; 
 set ma_bibli.donnees; 
 where montant_pret > 150000;
 run;
-
 data E_5; 
 set ma_bibli.donnees; 
 where profession = "CADRE" or profession = "ENSEIGNANT";
 run;
-
 * Ou;
  
 data E_5; 
 set ma_bibli.donnees; 
 where profession in ("CADRE" ,"ENSEIGNANT");
 run;
-
 * Etape DATA IF & THEN;
-
 data E_6; 
 set ma_bibli.donnees; 
 if montant_pret < 150000;
 run;
-
 * Etape DATA DO ... END & ELSE DO ... END;
-
 data E_7; 
 set ma_bibli.donnees; 
 if age > 30 then prime = 50;
 else prime = 100;
 run;
-
 * Etape DATA DELETE;
-
 data E_8; 
 set E_7; 
 if prime  = 50 then delete;
 run;
-
 data E_9; 
 set ma_bibli.donnees; 
 length info_fumeur $18;
@@ -94,16 +80,17 @@ end;
 run;
 
 *CONCATENATION DE TABLES;
+
 data E_10;
 set E_4 E_6;
 run;
 
 * FORMAT ;
+
 data E_11;
 set ma_bibli.donnees;
 montant_pret_2 = montant_pret/3;
 run;
-
 data E_11_bis;
 set E_11;
 format montant_pret_2 NUMX8.2 ;
@@ -111,11 +98,11 @@ montant_pret_2 = montant_pret/3;
 run;
 
 *DATE;
+
 data E_12;
 set ma_bibli.donnees;
 date = 1000;
 run;
-
 data ex_12_bis;
 set ex_12;
 format date DDMMYY10;
